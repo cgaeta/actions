@@ -6,7 +6,7 @@ inputs:
     required: true
     default: "dist"
 runs:
-  using: "docker"
-  image: "Dockerfile"
-  args:
-    - ${{ inputs.build_path }}
+  using: "composite"
+  steps:
+    - run: "entrypoint.sh ${{ inputs.build_path}}"
+      shell: bash
