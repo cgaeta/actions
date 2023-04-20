@@ -2,13 +2,13 @@ name: Build
 on:
   workflow_call:
     inputs:
-    repo:
-      description: 'Repo that I'm building from'
-      required: true
-    build_path:
-      description: 'Build output directory'
-      required: true
-      default: 'dist'
+      repo:
+        description: 'Repo that I'm building from'
+        required: true
+      build_path:
+        description: 'Build output directory'
+        required: true
+        default: 'dist'
 jobs:
   build:
     runs-on: ubuntu-latest
