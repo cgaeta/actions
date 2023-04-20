@@ -34,4 +34,4 @@ jobs:
       - name: Deploy
         uses: cgaeta/actions/.github/actions/build_portfolio@main
         with:
-          build_path: ${{ github.events.inputs.build_path }}
+          build_path: ${{ inputs.build_path }}
