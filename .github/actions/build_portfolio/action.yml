@@ -8,7 +8,11 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - run: cwd
+      shell: bash
     - run: cd portfolio
+      shell: bash
+    - run: cwd
       shell: bash
     - run: npm i
       shell: bash
