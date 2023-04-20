@@ -8,7 +8,25 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: ls -al ${{ github.action_path }}
+    - run: cd portfolio
       shell: bash
-    - run: ${{ github.action_path }}/entrypoint.sh ${{ inputs.build_path }}
+    - run: npm i
       shell: bash
+    - run: npm run build
+      shell: bash
+    - run: ..
+      shell: bash
+    - run: echo "${{ inputs.build_path }}"
+      shell: bash
+    - run: mv ./portfolio/${{ inputs.build_path }} ./page/dist
+      shell: bash
+    - run: cd page
+      shell: bash
+    - run: |
+        git config user.email 'cgaeta@users.noreplay.github.com'
+        git config user.name 'cgaeta'
+        git commit -am 'update portfolio'
+        git push
+      shell: bash
+    # - run: ${{ github.action_path }}/entrypoint.sh ${{ inputs.build_path }}
+    #   shell: bash
