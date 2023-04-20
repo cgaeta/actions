@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: portfolio
-          repository: "cgaeta/${{github.events.inputs.repo}}"
+          repository: "cgaeta/${{ inputs.repo }}"
       - name: Deploy
         uses: ./actions/build_portfolio
         with:
