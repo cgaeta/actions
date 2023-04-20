@@ -1,6 +1,6 @@
 name: Build
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
     repo:
       description: 'Repo that I'm building from'
