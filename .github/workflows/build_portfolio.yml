@@ -27,6 +27,6 @@ jobs:
           path: portfolio
           repository: "cgaeta/${{ inputs.repo }}"
       - name: Deploy
-        uses: cgaeta/actions/.github/actions/build_portfolio
+        uses: cgaeta/actions/.github/actions/build_portfolio@main
         with:
           build_path: ${{ github.events.inputs.build_path }}
