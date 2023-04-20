@@ -13,16 +13,13 @@ runs:
         npm i
         npm run build
       shell: bash
-    - run: echo "${{ inputs.build_path }}"
-      shell: bash
     - run: mv ./portfolio/${{ inputs.build_path }} ./page/dist
       shell: bash
     - run: |
         cd page
         git config user.email 'cgaeta@users.noreplay.github.com'
         git config user.name 'cgaeta'
+        git add .
         git commit -am 'update portfolio'
         git push
       shell: bash
-    # - run: ${{ github.action_path }}/entrypoint.sh ${{ inputs.build_path }}
-    #   shell: bash
