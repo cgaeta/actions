@@ -1,0 +1,12 @@
+name: "Build portfolio"
+description: "Build a portfolio from one of my repos and deploy to my GitHub page"
+inputs:
+  build_path:
+    description: "Build output directory"
+    required: true
+    default: "dist"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.build_path }}

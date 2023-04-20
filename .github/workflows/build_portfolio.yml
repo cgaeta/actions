@@ -1,0 +1,30 @@
+name: Build
+on:
+  workflow_dispatch:
+    inputs:
+    repo:
+      description: 'Repo that I'm building from'
+      required: true
+    build_path:
+      description: 'Build output directory'
+      required: true
+      default: 'dist'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build
+    steps:
+    - name: Checkout page repo
+      uses: actions/checkout@v3
+      with:
+        path: page
+        repository: cgaeta/cgaeta.github.io
+    - name: Checkout portfolio repo
+      uses: actions/checkout@v3
+      with:
+        path: portfolio
+        repository: "cgaeta/${{github.events.inputs.repo}}"
+    - name: Deploy
+      uses: ./actions/build_portfolio
+      with:
+        build_path: ${{ github.events.inputs.build_path }}
