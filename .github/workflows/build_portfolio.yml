@@ -4,9 +4,11 @@ on:
     inputs:
       repo:
         description: "Repo that I'm building from"
+        type: string
         required: true
       build_path:
         description: "Build output directory"
+        type: string
         required: true
         default: "dist"
 jobs:
