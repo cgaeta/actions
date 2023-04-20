@@ -1,6 +1,8 @@
 #!/bin/sh -l
 
 ls
+npm -v
+yarn -v
 cd portfolio
 npm i
 npm run build
