@@ -8,25 +8,17 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: echo "$PWD"
-      shell: bash
-    - run: cd portfolio
-      shell: bash
-    - run: echo "$PWD"
-      shell: bash
-    - run: npm i
-      shell: bash
-    - run: npm run build
-      shell: bash
-    - run: ..
+    - run: |
+        cd portfolio
+        npm i
+        npm run build
       shell: bash
     - run: echo "${{ inputs.build_path }}"
       shell: bash
     - run: mv ./portfolio/${{ inputs.build_path }} ./page/dist
       shell: bash
-    - run: cd page
-      shell: bash
     - run: |
+        cd page
         git config user.email 'cgaeta@users.noreplay.github.com'
         git config user.name 'cgaeta'
         git commit -am 'update portfolio'
