@@ -8,5 +8,7 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - run: ls
+      shell: bash
     - run: ${{ github.action_path }}/build_entrypoint.sh ${{ inputs.build_path }}
       shell: bash
