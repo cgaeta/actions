@@ -1,14 +1,16 @@
 #!/bin/sh -l
 
 ls
-npm -v
-yarn -v
+ls portfolio
 cd portfolio
 npm i
 npm run build
 cd ..
 mv "./portfolio/$1" ./page/dist
+ls page
+ls -al page/dist
 cd page
-git add .
-git commit -m "update portfolio"
+git config user.email 'cgaeta@users.noreply.github.com'
+git config user.name 'cgaeta'
+git commit -am "update portfolio"
 git push
