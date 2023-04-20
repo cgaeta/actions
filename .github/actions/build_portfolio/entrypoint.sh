@@ -1,5 +1,6 @@
 #!/bin/sh -l
 
+ls
 cd portfolio
 npm i
 npm run build
