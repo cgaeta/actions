@@ -20,7 +20,7 @@ runs:
         cd page
         git config user.email 'cgaeta@users.noreplay.github.com'
         git config user.name 'cgaeta'
-        git co -b update
+        git checkout -b update
         git add .
         git commit -am 'update portfolio'
         # git push
