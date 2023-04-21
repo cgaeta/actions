@@ -24,7 +24,7 @@ runs:
         git add .
         git commit -am 'update portfolio'
         # git push
-        gh pr create -B main -f
+        gh pr create -B main -f --H update
       shell: bash
       env:
         GITHUB_TOKEN: ${{ inputs.token }}
