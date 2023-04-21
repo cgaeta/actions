@@ -21,10 +21,10 @@ jobs:
         with:
           node-version: 20
       - run: |
-        npm i
-        npm run build
+          npm i
+          npm run build
       - uses: actions/upload-artifact@v3
-        with: 
+        with:
           name: build
           path: dist/
   deploy:
@@ -42,11 +42,6 @@ jobs:
           name: build
           path: /dist
       - run: |
-        git add .
-        git commit -m 'update portfolio'
-        git push
-      # - name: Deploy
-      #   uses: cgaeta/actions/.github/actions/build_portfolio@main
-      #   with:
-      #     build_path: ${{ inputs.build_path }}
-      #     token: ${{ secrets.GITHUB_TOKEN }}
+          git add .
+          git commit -m 'update portfolio'
+          git push
