@@ -12,8 +12,8 @@ runs:
         cd portfolio
         npm i
         npm run build
-    - run: mv ./portfolio/${{ inputs.build_path }} ./page/dist
-    - run: |
+        cd ..
+        mv ./portfolio/${{ inputs.build_path }} ./page/dist
         cd page
         git config user.email 'cgaeta@users.noreplay.github.com'
         git config user.name 'cgaeta'
@@ -22,5 +22,6 @@ runs:
         git commit -am 'update portfolio'
         # git push
         gh pr create -B main -f
+      shell: bash
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
