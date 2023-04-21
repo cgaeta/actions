@@ -42,6 +42,8 @@ jobs:
           name: build
           path: dist
       - run: |
+          git config user.email 'cgaeta@users.noreplay.github.com'
+          git config user.name 'cgaeta'
           git add .
           git commit -m 'update portfolio'
           git push
