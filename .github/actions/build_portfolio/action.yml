@@ -5,6 +5,9 @@ inputs:
     description: "Build output directory"
     required: true
     default: "dist"
+  token:
+    description: GitHub token
+    required: true
 runs:
   using: "composite"
   steps:
@@ -24,4 +27,4 @@ runs:
         gh pr create -B main -f
       shell: bash
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ inputs.token }}

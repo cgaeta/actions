@@ -35,3 +35,4 @@ jobs:
         uses: cgaeta/actions/.github/actions/build_portfolio@main
         with:
           build_path: ${{ inputs.build_path }}
+          token: ${{ secrets.GITHUB_TOKEN }}
