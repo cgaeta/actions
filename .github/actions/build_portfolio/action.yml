@@ -12,14 +12,15 @@ runs:
         cd portfolio
         npm i
         npm run build
-      shell: bash
     - run: mv ./portfolio/${{ inputs.build_path }} ./page/dist
-      shell: bash
     - run: |
         cd page
         git config user.email 'cgaeta@users.noreplay.github.com'
         git config user.name 'cgaeta'
+        git co -b update
         git add .
         git commit -am 'update portfolio'
-        git push
-      shell: bash
+        # git push
+        gh pr create -B main -f
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
