@@ -23,7 +23,7 @@ runs:
         git checkout -b update
         git add .
         git commit -am 'update portfolio'
-        # git push
+        git push
         gh pr create -B main -f --H update
       shell: bash
       env:
