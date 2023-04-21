@@ -16,23 +16,37 @@ jobs:
     runs-on: ubuntu-latest
     name: Build
     steps:
-      - name: Checkout page repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          path: page
+          node-version: 20
+      - run: |
+        npm i
+        npm run build
+      - uses: actions/upload-artifact@v3
+        with: 
+          name: build
+          path: dist/
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+        with:
           repository: cgaeta/cgaeta.github.io
-      - name: Checkout portfolio repo
-        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          path: portfolio
-          repository: "cgaeta/${{ inputs.repo }}"
-      - name: Use Node.js
-        uses: actions/setup-node@v3
+          node-version: 20
+      - uses: actions/download-artifact@v3
         with:
-          node-version: lts/*
-          check-latest: true
-      - name: Deploy
-        uses: cgaeta/actions/.github/actions/build_portfolio@main
-        with:
-          build_path: ${{ inputs.build_path }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          name: build
+          path: /dist
+      - run: |
+        git add .
+        git commit -m 'update portfolio'
+        git push
+      # - name: Deploy
+      #   uses: cgaeta/actions/.github/actions/build_portfolio@main
+      #   with:
+      #     build_path: ${{ inputs.build_path }}
+      #     token: ${{ secrets.GITHUB_TOKEN }}
