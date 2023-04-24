@@ -43,7 +43,7 @@ jobs:
           path: dist
       - run: |
           mkdir --parents "$HOME/.ssh"
-          DEPLOY_KEY = "$HOME/.ssh/deploy_key"
+          DEPLOY_KEY="$HOME/.ssh/deploy_key"
           echo "${SSH_DEPLOY_KEY}" > "$DEPLOY_KEY"
           chmod 600 "$DEPLOY_KEY"
           SSH_KNOWN_HOSTS="$HOME/.ssh/known_hosts"
