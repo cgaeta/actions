@@ -34,9 +34,6 @@ jobs:
       - uses: actions/checkout@v3
         with:
           repository: cgaeta/cgaeta.github.io
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
       - uses: actions/download-artifact@v3
         with:
           name: build
@@ -57,6 +54,7 @@ jobs:
           fi
           git config user.email 'cgaeta@users.noreplay.github.com'
           git config user.name 'cgaeta'
+          git checkout -b update
           git add .
           git commit -m 'update portfolio'
           git push
