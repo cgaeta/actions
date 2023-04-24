@@ -57,6 +57,6 @@ jobs:
           git checkout -b update
           git add .
           git commit -m 'update portfolio'
-          git push
+          git push --set-upstream origin update
         env:
           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
