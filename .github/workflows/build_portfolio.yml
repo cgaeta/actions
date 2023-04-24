@@ -42,13 +42,19 @@ jobs:
           name: build
           path: dist
       - run: |
-          mkdir --parents "$HOME/.ssh"
-          DEPLOY_KEY="$HOME/.ssh/deploy_key"
-          echo "${SSH_DEPLOY_KEY}" > "$DEPLOY_KEY"
-          chmod 600 "$DEPLOY_KEY"
-          SSH_KNOWN_HOSTS="$HOME/.ssh/known_hosts"
-          ssh-keyscan -H "github.com" > "$SSH_KNOWN_HOSTS"
-          export GIT_SSH_COMMAND="git@github.com:cgaeta/cgaeta.github.io.git"
+          if [ -n "${SSH_DEPLOY_KEY:=}" ]
+          then
+            mkdir --parents "$HOME/.ssh"
+            DEPLOY_KEY="$HOME/.ssh/deploy_key"
+            echo "${SSH_DEPLOY_KEY}" > "$DEPLOY_KEY"
+            chmod 600 "$DEPLOY_KEY"
+            SSH_KNOWN_HOSTS="$HOME/.ssh/known_hosts"
+            ssh-keyscan -H "github.com" > "$SSH_KNOWN_HOSTS"
+            export GIT_SSH_COMMAND="git@github.com:cgaeta/cgaeta.github.io.git"
+          else
+            echo "::error::SSH_DEPLOY_KEY is empty"
+            exit 1
+          fi
         env:
           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
       - run: |
