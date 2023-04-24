@@ -11,6 +11,9 @@ on:
         type: string
         required: true
         default: "dist"
+    secrets:
+      SSH_DEPLOY_KEY:
+        required: true
 jobs:
   build:
     runs-on: ubuntu-latest
