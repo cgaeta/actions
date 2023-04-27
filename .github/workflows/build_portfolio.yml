@@ -43,24 +43,8 @@ jobs:
           name: build
           path: dist
       - run: |
-          if [ -n "${SSH_DEPLOY_KEY:=}" ]
-          then
-            mkdir --parents "$HOME/.ssh"
-            DEPLOY_KEY="$HOME/.ssh/deploy_key"
-            echo "${SSH_DEPLOY_KEY}" > "$DEPLOY_KEY"
-            chmod 600 "$DEPLOY_KEY"
-            SSH_KNOWN_HOSTS="$HOME/.ssh/known_hosts"
-            ssh-keyscan -H "github.com" > "$SSH_KNOWN_HOSTS"
-            export GIT_SSH_COMMAND="ssh -i "$DEPLOY_KEY" -o UserKnownHostsFile=$SSH_KNOWN_HOSTS"
-          else
-            echo "::error::SSH_DEPLOY_KEY is empty"
-            exit 1
-          fi
           git config user.email 'cgaeta@users.noreplay.github.com'
           git config user.name 'cgaeta'
-          git checkout -b update
           git add .
           git commit -m 'update portfolio'
-          git push --set-upstream origin update
-        env:
-          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+          git push
